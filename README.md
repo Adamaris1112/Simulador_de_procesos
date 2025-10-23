@@ -1,2 +1,2 @@
 # Simulador de procesos implementando Algoritmos de Planificación
-El proyecto consiste en crear un Coloreador Léxico para analizar cadenas relacionadas  con los tokens del lenguaje de programación asignado en el primer proyecto.
+Desarrollar un programa que simule la ejecución de procesos de un sistema operativo, implementando algoritmos de planificación FCFS, SJF y Round Robin.
