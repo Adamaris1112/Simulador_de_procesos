@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simulador de Planificación de Procesos - Educativo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Simulador de Planificación de Procesos (Educativo)</h1>
+    <p>Algoritmos: FCFS, SJF, Round Robin. Cada unidad = <strong>3 segundos</strong>.</p>
+  </header>
+
+  <main class="container">
+    <section class="left">
+      <div class="card">
+        <h2>Crear proceso</h2>
+        <form id="process-form">
+          <label>Nombre <input id="p-name" required maxlength="8" placeholder="P1" /></label>
+          <label>Instante de llegada (t) <input id="p-arrival" type="number" min="0" value="0" required /></label>
+          <label>Tiempo CPU (burst) <input id="p-burst" type="number" min="1" value="1" required /></label>
+          <div class="actions">
+            <button id="add-btn" type="submit">Agregar</button>
+            <button id="clear-btn" type="button">Limpiar</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Procesos cargados</h2>
+        <table id="process-table">
+          <thead><tr><th>Nombre</th><th>Llegada</th><th>Burst</th><th>Acción</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="card controls">
+        <h2>Simulación</h2>
+        <label>Algoritmo
+          <select id="algorithm">
+            <option value="fcfs">FCFS</option>
+            <option value="sjf">SJF</option>
+            <option value="rr">Round Robin</option>
+          </select>
+        </label>
+        <label id="quantum-label" class="hidden">Quantum (unidades) <input id="quantum" type="number" min="1" value="2" /></label>
+        <div class="actions">
+          <button id="start-btn">Iniciar</button>
+          <button id="pause-btn" disabled>Pausar</button>
+          <button id="resume-btn" disabled>Reanudar</button>
+          <button id="reset-btn">Reset</button>
+        </div>
+        <p class="note">Cada unidad de tiempo dura 3 segundos.</p>
+      </div>
+    </section>
+
+    <section class="right">
+      <div class="card timeline">
+        <h2>Gantt / Línea de tiempo</h2>
+        <div id="gantt-container" class="gantt-container">
+          <table id="gantt-table"><thead></thead><tbody></tbody></table>
+        </div>
+      </div>
+
+      <div class="card queue hidden" id="rr-queue-card">
+        <h2>Cola (Round Robin)</h2>
+        <div id="rr-queue" class="rr-queue"></div>
+      </div>
+
+      <div class="card results">
+        <h2>Resultados y métricas</h2>
+        <div id="results"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Proyecto web educativo - Simulador de Planificación</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
