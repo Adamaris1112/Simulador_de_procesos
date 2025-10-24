@@ -1,7 +1,3 @@
-// Simulador de Planificación - Web (Corregido)
-// Este archivo soluciona el error donde la simulación se quedaba en 0 y no avanzaba.
-// Ajuste: ya no se llama resetSimulation(true) al iniciar la simulación.
-
 class Process {
   constructor(name, arrival, burst) {
     this.name = name;
@@ -18,8 +14,8 @@ const state = {
   timer: null,
   running: false,
   algorithm: 'fcfs',
-  quantum: 2,
-  unitMs: 3000 // cada unidad dura 3 segundos
+  quantum: 3,
+  unitMs: 3000 
 };
 
 const elements = {
@@ -41,7 +37,6 @@ const elements = {
   rrQueue: document.getElementById('rr-queue')
 };
 
-// Renderiza tabla de procesos
 function refreshProcessTable() {
   elements.tableBody.innerHTML = '';
   state.processes
@@ -57,7 +52,6 @@ function showMessage(msg){
   elements.results.innerHTML = `<pre>${msg}</pre>`;
 }
 
-// Reinicia simulación (sin borrar procesos)
 function resetSimulation(preserveProcesses=true){
   if(!preserveProcesses) state.processes = [];
   state.gantt = [];
@@ -73,7 +67,6 @@ function resetSimulation(preserveProcesses=true){
   refreshProcessTable();
 }
 
-// Algoritmos
 function scheduleFCFS(processes){
   const procs = processes.map(p=>({...p})).sort((a,b)=>a.arrival - b.arrival);
   const timeline = [];
@@ -113,7 +106,6 @@ function scheduleRR(processes, quantum){
   return timeline;
 }
 
-// Dibuja Gantt
 function renderGantt(){
   const table=elements.ganttTable;
   table.querySelector('thead').innerHTML='';
@@ -142,7 +134,6 @@ function renderGantt(){
   }
 }
 
-// Métricas
 function computeMetrics(timeline){
   const procs=state.processes.map(p=>({name:p.name, arrival:p.arrival, burst:p.burst}));
   const finish={};
@@ -156,7 +147,6 @@ function computeMetrics(timeline){
   });
 }
 
-// Eventos
 elements.form.addEventListener('submit',e=>{
   e.preventDefault();
   const name=elements.name.value.trim();
@@ -183,7 +173,6 @@ elements.algorithm.addEventListener('change',()=>{
   else{ elements.quantumLabel.classList.add('hidden'); elements.rrQueueCard.classList.add('hidden'); }
 });
 
-// 🔧 CORREGIDO: No reiniciamos procesos al iniciar
 elements.startBtn.addEventListener('click',()=>{
   if(state.processes.length===0){ alert('Agrega procesos antes de iniciar'); return; }
   clearInterval(state.timer); state.time=0; state.running=false; state.gantt=[];
