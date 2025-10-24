@@ -1,0 +1,137 @@
+<!doctype html>
+<!-- Documento para el simulador de procesos -->
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simulador de Planificación de Procesos - Educativo</title>
+  <!-- Enlace a la hoja de estilos principal -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Sugerencia: agregar descripción meta para SEO -->
+  <!-- <meta name="description" content="Simulador educativo  de procesos con algoritmos FCFS, SJF y Round Robin."> -->
+</head>
+
+<body>
+  <!-- ================== CABECERA PRINCIPAL ================== -->
+  <header>
+    <h1>Simulador de Planificación de Procesos (Educativo)</h1>
+    <p>Algoritmos: FCFS, SJF, Round Robin. Cada unidad = <strong>3 segundos</strong>.</p>
+  </header>
+
+  <!-- ================== CONTENIDO PRINCIPAL ================== -->
+  <main class="container">
+    <!-- Sección izquierda: formularios, tabla de procesos y controles -->
+    <section class="left">
+
+      <!-- === Tarjeta: Crear proceso === -->
+      <div class="card">
+        <h2>Crear proceso</h2>
+        <!-- Formulario para ingresar nuevos procesos -->
+        <form id="process-form">
+          <!-- Campo para el nombre del proceso -->
+          <label for="p-name">Nombre</label>
+          <input id="p-name" required maxlength="8" placeholder="P1" />
+
+          <!-- Campo para el instante de llegada -->
+          <label for="p-arrival">Instante de llegada (t)</label>
+          <input id="p-arrival" type="number" min="0" value="0" required />
+
+          <!-- Campo para el tiempo de ráfaga (burst time) -->
+          <label for="p-burst">Tiempo CPU (burst)</label>
+          <input id="p-burst" type="number" min="1" value="1" required />
+
+          <!-- Botones de acción -->
+          <div class="actions">
+            <button id="add-btn" type="submit">Agregar</button>
+            <button id="clear-btn" type="button">Limpiar</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- === Tarjeta: Procesos cargados === -->
+      <div class="card">
+        <h2>Procesos cargados</h2>
+        <!-- Tabla donde se mostrarán los procesos ingresados -->
+        <table id="process-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Llegada</th>
+              <th>Burst</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <!-- Sugerencia: incluir mensaje "No hay procesos cargados" cuando esté vacía -->
+        </table>
+      </div>
+
+      <!-- === Tarjeta: Controles de simulación === -->
+      <div class="card controls">
+        <h2>Simulación</h2>
+
+        <!-- Selección del algoritmo de planificación -->
+        <label for="algorithm">Algoritmo</label>
+        <select id="algorithm">
+          <option value="fcfs">FCFS</option>
+          <option value="sjf">SJF</option>
+          <option value="rr">Round Robin</option>
+        </select>
+
+        <!-- Campo Quantum (solo visible si se elige Round Robin) -->
+        <label id="quantum-label" class="hidden" for="quantum">Quantum (unidades)</label>
+        <input id="quantum" type="number" min="1" value="2" />
+
+        <!-- Botones para controlar la simulación -->
+        <div class="actions">
+          <button id="start-btn">Iniciar</button>
+          <button id="pause-btn" disabled>Pausar</button>
+          <button id="resume-btn" disabled>Reanudar</button>
+          <button id="reset-btn">Reset</button>
+        </div>
+
+        <!-- Nota informativa -->
+        <p class="note">Cada unidad de tiempo dura 3 segundos.</p>
+      </div>
+    </section>
+
+    <!-- ================== SECCIÓN DERECHA ================== -->
+    <section class="right">
+
+      <!-- === Tarjeta: Diagrama de Gantt === -->
+      <div class="card timeline">
+        <h2>Gantt / Línea de tiempo</h2>
+        <!-- Contenedor para el diagrama de Gantt -->
+        <div id="gantt-container" class="gantt-container">
+          <table id="gantt-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- === Tarjeta: Cola Round Robin === -->
+      <div class="card queue hidden" id="rr-queue-card">
+        <h2>Cola (Round Robin)</h2>
+        <div id="rr-queue" class="rr-queue"></div>
+      </div>
+
+      <!-- === Tarjeta: Resultados y métricas === -->
+      <div class="card results">
+        <h2>Resultados y métricas</h2>
+        <div id="results"></div>
+        <!-- Aquí el JS generará los resultados de tiempo de espera, retorno, etc. -->
+      </div>
+    </section>
+  </main>
+
+  <!-- ================== PIE DE PÁGINA ================== -->
+  <footer>
+    <p>&copy; 2025 Proyecto web educativo - Simulador de Planificación de Procesos</p>
+  </footer>
+
+  <!-- Archivo JavaScript con la lógica del simulador -->
+  <script src="app.js"></script>
+  <!-- <script src="app.js" defer></script> -->
+</body>
+</html>
