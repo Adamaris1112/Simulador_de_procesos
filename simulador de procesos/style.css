@@ -1,3 +1,4 @@
+/* Variables globales para colores y estilos reutilizables */
 :root{
   --bg:#0f1115;
   --card:#16181c;
@@ -6,8 +7,12 @@
   --text:#7c7c7c;
   --glass: rgba(255,255,255,0.03);
 }
+/* Ajustes generales y tipo de letra */
 *{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+/*  Estilos del cuerpo de la pagina */
 body{margin:0;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+/*Encabezado fijo en la parte superior */
+
 header{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.03)}
 header h1{margin:0;font-size:18px}
 .container{display:flex;gap:16px;padding:16px;flex:1}
@@ -16,6 +21,8 @@ header h1{margin:0;font-size:18px}
 .card{background:var(--card);padding:12px;border-radius:8px}
 .card h2{margin:0 0 8px 0;font-size:15px}
 label{display:block;margin:8px 0;color:var(--muted);font-size:13px}
+
+/* Inputs y selects ordenados y esteticos */
 input,select{width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.03);background:var(--glass);color:var(--text)}
 .actions{display:flex;gap:8px;margin-top:8px}
 button{padding:8px 10px;border-radius:6px;border:0;background:#2b8fff;color:white;cursor:pointer}
@@ -35,4 +42,5 @@ table td,table th{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,0.02)
 .results pre{white-space:pre-wrap;color:var(--muted)}
 .note{font-size:12px;color:var(--muted);margin-top:8px}
 .hidden{display:none}
+/* Estilos del pie de pagina */
 footer{padding:10px;text-align:center;font-size:13px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03)}
